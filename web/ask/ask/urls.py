@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
-from qa.views import test
+from qa.views import test, basetemp
 
 urlpatterns = [
 	url(r'^$', test),
@@ -9,5 +9,6 @@ urlpatterns = [
 	url(r'^question/.*$', test),
 	url(r'^ask/.*$', test),
 	url(r'^popular/.*$', test),
-	url(r'^new/.*$', test)
+	url(r'^new/.*$', test),
+	url(r'^base/.*$', basetemp),
 ]
