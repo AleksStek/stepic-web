@@ -16,7 +16,8 @@ def basetemp(request, url, order='-added_ad'):
 		'paginator': paginator,
 		'page': page,
 	},)
-
+def questempty(request):
+	return HttpResponseRedirect('/question/1/')
 def questpage(request, slug):
 	question = get_object_or_404(Question, pk=slug)
 	return render(request, 'quest.html',{
@@ -26,11 +27,12 @@ def questpage(request, slug):
 	},)
 
 def askform(request):
+	url = '/question/'
 	if request.method == "POST":
 		ask = AskForm(request.POST)
 		if ask.is_valid():
-			url = '/question/' + str( ask.save() ) + '/'
-			return HttpResponseRedirect(url)
+			url = url + str( ask.save() ) + '/'
+		return HttpResponseRedirect(url)
 	else:
 		ask = AskForm()
 	return render(request, 'ask.html',{
@@ -43,6 +45,4 @@ def newanswer(request):
 		newanswer = AnswerForm(request.POST)
 		if newanswer.is_valid():
 			url = url + str(newanswer.save()) + '/'
-			return HttpResponseRedirect(url) 
-	else:
-		return HttpResponseRedirect(url)
+	return HttpResponseRedirect(url) 
