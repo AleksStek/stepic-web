@@ -19,4 +19,12 @@
 		</li>
 	{% endfor %}
 	</ol>
+	<h2>Напиши свой ответ</h2>
+	<form action="/answer/" method="POST">
+		{% csrf_token %}
+		{% for field in newanswer %}
+		<div><label>{{ field.label }}<div>{{ field }}</div></label></div>
+		{% endfor %}
+		<input type="submit" value="Send">
+	</form>
 {% endblock %}
