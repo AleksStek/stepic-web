@@ -3,7 +3,7 @@
 {% block content %}
 	<article>
 		<aside style="float:left;font-size:20px;margin:5px;text-transform:uppercase">Вопрос</aside>
-		<header><h2>{{ question.title }}</h2></header>
+		<header><h2>{{ question.title }}</h2><h3>{{ question.author }}</h3></header>
 		<p>{{ question.text }}</p>
 		<span>{{ question.added_ad }}</span>
 	</article>

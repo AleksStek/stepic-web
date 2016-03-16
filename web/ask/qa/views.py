@@ -32,7 +32,15 @@ def questpage(request, slug):
 def askform(request):
 	url = '/question/'
 	if request.method == "POST":
-		ask = AskForm(request.POST)
+		if request.POST['author']:
+			author = request.POST['author']
+		else:
+			author = request.user
+		ask = AskForm({
+			'title': request.POST['title'],
+			'text': request.POST['text'],
+			'author': author,
+		},)
 		if ask.is_valid():
 			url = url + str( ask.save() ) + '/'
 		return HttpResponseRedirect(url)
